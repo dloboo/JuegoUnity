@@ -61,4 +61,20 @@ public class ControlJugador : MonoBehaviour
             SceneManager.LoadScene("FinPartida");
         }
     }
+
+    // Esta función se llama automáticamente cuando nuestro Collider
+    // entra en un Collider que es "Trigger".
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Comprobamos si el objeto que hemos tocado tiene el Tag "Moneda"
+        if (other.gameObject.tag == "Moneda")
+        {
+            // Si es una moneda, la destruimos
+            Destroy(other.gameObject);
+
+            // Y avisamos al GameManager para que sume un punto
+            GameManagerScript.Instance.SumarPunto();
+        }
+    }
 }

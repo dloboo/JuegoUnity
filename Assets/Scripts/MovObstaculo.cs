@@ -10,9 +10,16 @@ public class MovimientoObstaculo : MonoBehaviour
     // Update se llama en cada fotograma
     void Update()
     {
-        // Movemos este objeto (el "Obstaculo") hacia la izquierda
-        // usando 'transform.Translate'.
-        // Vector2.left es lo mismo que (-1, 0)
+        // Esto es lo que ya tenías:
         transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+
+        // --- ¡AÑADE ESTO! ---
+        // Comprobamos si el obstáculo se ha salido de la pantalla
+        // (ej. si su posición 'X' es menor que -10)
+        if (transform.position.x < -10f)
+        {
+            // Si es así, nos destruimos a nosotros mismos
+            Destroy(gameObject);
+        }
     }
 }
